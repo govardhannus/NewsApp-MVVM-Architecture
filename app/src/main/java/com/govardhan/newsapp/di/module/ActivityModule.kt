@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.di.ActivityContext
+import com.govardhan.newsapp.ui.base.ViewModelProviderFactory
+import com.govardhan.newsapp.ui.topheadline.TopHeadlineAdapter
+import com.govardhan.newsapp.ui.topheadline.TopHeadlineViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -16,4 +19,16 @@ class ActivityModule(private val activity: AppCompatActivity) {
     fun provideContext(): Context {
         return activity
     }
+
+    @Provides
+    fun provideNewsListViewModel(topHeadlineRepository: TopHeadlineRepository): TopHeadlineViewModel {
+        return ViewModelProvider(activity,
+            ViewModelProviderFactory(TopHeadlineViewModel::class) {
+                TopHeadlineViewModel(topHeadlineRepository)
+            })[TopHeadlineViewModel::class.java]
+    }
+
+    @Provides
+    fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())
+
 }
