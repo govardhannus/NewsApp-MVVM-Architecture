@@ -1,10 +1,13 @@
 package com.govardhan.newsapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.govardhan.newsapp.R
 import com.govardhan.newsapp.databinding.ActivityMainBinding
 import com.govardhan.newsapp.databinding.ActivityTopHeadlineBinding
+import com.govardhan.newsapp.ui.NewsSource.NewsSourceActivity
+import com.govardhan.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,5 +16,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.topHeadline.setOnClickListener {
+           val intent = Intent(this, TopHeadlineActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.newsSources.setOnClickListener {
+            val intent = Intent(this, NewsSourceActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

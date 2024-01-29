@@ -9,9 +9,7 @@ import com.bumptech.glide.Glide
 import com.govardhan.newsapp.data.model.Article
 import com.govardhan.newsapp.databinding.TopHeadlineItemLayoutBinding
 
-class TopHeadlineAdapter(
-    private val articleList: ArrayList<Article>
-) : RecyclerView.Adapter<TopHeadlineAdapter.DataViewHolder>() {
+class TopHeadlineAdapter(private val articleList: ArrayList<Article>) : RecyclerView.Adapter<TopHeadlineAdapter.DataViewHolder>() {
 
     class DataViewHolder(private val binding: TopHeadlineItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {

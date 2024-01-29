@@ -31,5 +31,4 @@ class TopHeadlineViewModel(private val topHeadlineRepository: TopHeadlineReposit
                 }
         }
     }
-
 }
