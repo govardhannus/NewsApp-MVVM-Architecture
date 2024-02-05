@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.govardhan.newsapp.databinding.ActivityMainBinding
 import com.govardhan.newsapp.ui.NewsSource.NewsSourceActivity
 import com.govardhan.newsapp.ui.country.CountryActivity
+import com.govardhan.newsapp.ui.language.LanguageActivity
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.countries.setOnClickListener{
             val intent = Intent(this, CountryActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.languages.setOnClickListener{
+            val intent = Intent(this, LanguageActivity::class.java)
             startActivity(intent)
         }
 
