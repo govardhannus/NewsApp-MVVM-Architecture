@@ -3,12 +3,15 @@ package com.govardhan.newsapp.di.module
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.govardhan.newsapp.data.repository.CountryRepository
 import com.govardhan.newsapp.data.repository.NewsSourceRepository
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.di.ActivityContext
 import com.govardhan.newsapp.ui.NewsSource.NewsSourceAdapter
 import com.govardhan.newsapp.ui.NewsSource.NewsSourceViewModel
 import com.govardhan.newsapp.ui.base.ViewModelProviderFactory
+import com.govardhan.newsapp.ui.country.CountryAdapter
+import com.govardhan.newsapp.ui.country.CountryViewModel
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineAdapter
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineViewModel
 import dagger.Module
@@ -44,5 +47,15 @@ class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     fun provideNewsSourceAdapter() = NewsSourceAdapter(ArrayList())
+
+    @Provides
+    fun provideCountryViewModel(countryRepository: CountryRepository): CountryViewModel {
+        return ViewModelProvider(activity,
+            ViewModelProviderFactory(CountryViewModel::class) {
+                CountryViewModel(countryRepository)
+            })[CountryViewModel::class.java]
+    }
+    @Provides
+    fun provideCountryAdapter() = CountryAdapter(ArrayList())
 
 }

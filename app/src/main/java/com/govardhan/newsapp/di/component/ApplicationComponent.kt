@@ -3,6 +3,7 @@ package com.govardhan.newsapp.di.component
 import android.content.Context
 import com.govardhan.newsapp.NewsApplication
 import com.govardhan.newsapp.data.api.NetworkService
+import com.govardhan.newsapp.data.repository.CountryRepository
 import com.govardhan.newsapp.data.repository.NewsSourceRepository
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.di.ApplicationContext
@@ -24,5 +25,7 @@ interface ApplicationComponent {
     fun getTopHeadlineRepository(): TopHeadlineRepository
 
     fun getNewsSourceRepository(): NewsSourceRepository
+
+    fun getCountryRepository():CountryRepository
 
 }

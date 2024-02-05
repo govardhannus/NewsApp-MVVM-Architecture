@@ -3,10 +3,9 @@ package com.govardhan.newsapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.govardhan.newsapp.R
 import com.govardhan.newsapp.databinding.ActivityMainBinding
-import com.govardhan.newsapp.databinding.ActivityTopHeadlineBinding
 import com.govardhan.newsapp.ui.NewsSource.NewsSourceActivity
+import com.govardhan.newsapp.ui.country.CountryActivity
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +26,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.countries.setOnClickListener{
+            val intent = Intent(this, CountryActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

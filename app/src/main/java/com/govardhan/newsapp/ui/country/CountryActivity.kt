@@ -1,4 +1,4 @@
-package com.govardhan.newsapp.ui.NewsSource
+package com.govardhan.newsapp.ui.country
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,27 +10,30 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.govardhan.newsapp.NewsApplication
+import com.govardhan.newsapp.R
+import com.govardhan.newsapp.data.model.Country
 import com.govardhan.newsapp.data.model.Source
-import com.govardhan.newsapp.databinding.ActivityNewsSourceBinding
+import com.govardhan.newsapp.databinding.ActivityCountryBinding
 import com.govardhan.newsapp.di.component.DaggerActivityComponent
 import com.govardhan.newsapp.di.module.ActivityModule
 import com.govardhan.newsapp.ui.base.UiState
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewsSourceActivity : AppCompatActivity() {
+class CountryActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var newsSourceAdapter: NewsSourceAdapter
+    lateinit var countryAdapter: CountryAdapter
 
     @Inject
-    lateinit var newsSourceViewModel: NewsSourceViewModel
+    lateinit var countryViewModel: CountryViewModel
 
-    lateinit var binding: ActivityNewsSourceBinding
+    lateinit var binding: ActivityCountryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
         super.onCreate(savedInstanceState)
-        binding = ActivityNewsSourceBinding.inflate(layoutInflater)
+        binding = ActivityCountryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
         setupObserver()
@@ -45,13 +48,13 @@ class NewsSourceActivity : AppCompatActivity() {
                 (recyclerView.layoutManager as LinearLayoutManager).orientation
             )
         )
-        recyclerView.adapter = newsSourceAdapter
+        recyclerView.adapter = countryAdapter
     }
 
     private fun setupObserver() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                newsSourceViewModel.uiState.collect {
+                countryViewModel.uiState.collect {
                     when (it) {
                         is UiState.Success -> {
                             binding.progressBar.visibility = View.GONE
@@ -65,7 +68,7 @@ class NewsSourceActivity : AppCompatActivity() {
                         is UiState.Error -> {
                             //Handle Error
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(this@NewsSourceActivity, it.message, Toast.LENGTH_LONG)
+                            Toast.makeText(this@CountryActivity, it.message, Toast.LENGTH_LONG)
                                 .show()
                         }
                     }
@@ -74,9 +77,9 @@ class NewsSourceActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderList(sourceList: List<Source>) {
-        newsSourceAdapter.addData(sourceList)
-        newsSourceAdapter.notifyDataSetChanged()
+    private fun renderList(countryList: List<Country>) {
+        countryAdapter.addData(countryList)
+        countryAdapter.notifyDataSetChanged()
     }
 
     private fun injectDependencies() {
