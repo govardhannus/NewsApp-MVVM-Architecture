@@ -6,6 +6,7 @@ import com.govardhan.newsapp.data.api.NetworkService
 import com.govardhan.newsapp.data.repository.CountryRepository
 import com.govardhan.newsapp.data.repository.LanguageRepository
 import com.govardhan.newsapp.data.repository.NewsSourceRepository
+import com.govardhan.newsapp.data.repository.SearchRepository
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.di.ApplicationContext
 import com.govardhan.newsapp.di.module.ApplicationModule
@@ -30,5 +31,7 @@ interface ApplicationComponent {
     fun getCountryRepository():CountryRepository
 
     fun getLanguageRepository():LanguageRepository
+
+    fun getSearchRepository():SearchRepository
 
 }

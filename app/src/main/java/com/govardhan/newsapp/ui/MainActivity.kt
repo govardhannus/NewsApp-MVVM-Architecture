@@ -3,10 +3,12 @@ package com.govardhan.newsapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.govardhan.newsapp.data.repository.SearchRepository
 import com.govardhan.newsapp.databinding.ActivityMainBinding
 import com.govardhan.newsapp.ui.NewsSource.NewsSourceActivity
 import com.govardhan.newsapp.ui.country.CountryActivity
 import com.govardhan.newsapp.ui.language.LanguageActivity
+import com.govardhan.newsapp.ui.search.SearchActivity
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +36,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.languages.setOnClickListener{
             val intent = Intent(this, LanguageActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.search.setOnClickListener{
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
 

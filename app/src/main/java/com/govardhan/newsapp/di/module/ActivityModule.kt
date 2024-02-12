@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.govardhan.newsapp.data.repository.CountryRepository
 import com.govardhan.newsapp.data.repository.LanguageRepository
 import com.govardhan.newsapp.data.repository.NewsSourceRepository
+import com.govardhan.newsapp.data.repository.SearchRepository
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.di.ActivityContext
 import com.govardhan.newsapp.ui.NewsSource.NewsSourceAdapter
@@ -15,6 +16,7 @@ import com.govardhan.newsapp.ui.country.CountryAdapter
 import com.govardhan.newsapp.ui.country.CountryViewModel
 import com.govardhan.newsapp.ui.language.LanguageAdapter
 import com.govardhan.newsapp.ui.language.LanguageViewModel
+import com.govardhan.newsapp.ui.search.SearchViewModel
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineAdapter
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineViewModel
 import dagger.Module
@@ -71,5 +73,11 @@ class ActivityModule(private val activity: AppCompatActivity) {
     @Provides
     fun provideLanguageAdapter() = LanguageAdapter(ArrayList())
 
-
+    @Provides
+    fun provideSearchViewModel(searchRepository: SearchRepository): SearchViewModel {
+        return ViewModelProvider(activity,
+            ViewModelProviderFactory(SearchViewModel::class) {
+                SearchViewModel(searchRepository)
+            })[SearchViewModel::class.java]
+    }
 }
