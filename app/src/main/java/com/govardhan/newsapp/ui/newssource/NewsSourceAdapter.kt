@@ -1,4 +1,4 @@
-package com.govardhan.newsapp.ui.NewsSource
+package com.govardhan.newsapp.ui.newssource
 
 import android.net.Uri
 import android.view.LayoutInflater

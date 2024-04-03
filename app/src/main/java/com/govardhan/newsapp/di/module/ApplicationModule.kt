@@ -1,25 +1,19 @@
 package com.govardhan.newsapp.di.module
 
-import android.content.Context
-import com.govardhan.newsapp.NewsApplication
 import com.govardhan.newsapp.data.api.NetworkService
-import com.govardhan.newsapp.di.ApplicationContext
 import com.govardhan.newsapp.di.BaseUrl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
 @Module
-class ApplicationModule(private val application: NewsApplication) {
-
-    @ApplicationContext
-    @Provides
-    fun provideContext(): Context {
-        return application
-    }
+@InstallIn(SingletonComponent::class)
+class ApplicationModule() {
 
     @BaseUrl
     @Provides

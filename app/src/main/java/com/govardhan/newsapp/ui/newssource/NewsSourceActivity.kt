@@ -1,39 +1,41 @@
-package com.govardhan.newsapp.ui.NewsSource
+package com.govardhan.newsapp.ui.newssource
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.govardhan.newsapp.NewsApplication
 import com.govardhan.newsapp.data.model.Source
 import com.govardhan.newsapp.databinding.ActivityNewsSourceBinding
-import com.govardhan.newsapp.di.component.DaggerActivityComponent
-import com.govardhan.newsapp.di.module.ActivityModule
 import com.govardhan.newsapp.ui.base.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+@AndroidEntryPoint
 class NewsSourceActivity : AppCompatActivity() {
 
     @Inject
     lateinit var newsSourceAdapter: NewsSourceAdapter
 
-    @Inject
-    lateinit var newsSourceViewModel: NewsSourceViewModel
+    private lateinit var newsSourceViewModel: NewsSourceViewModel
 
-    lateinit var binding: ActivityNewsSourceBinding
+    private lateinit var binding: ActivityNewsSourceBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityNewsSourceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        newsSourceViewModel = ViewModelProvider(this)[NewsSourceViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -79,9 +81,4 @@ class NewsSourceActivity : AppCompatActivity() {
         newsSourceAdapter.notifyDataSetChanged()
     }
 
-    private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
-    }
 }

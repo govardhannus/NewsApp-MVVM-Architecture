@@ -3,9 +3,8 @@ package com.govardhan.newsapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.govardhan.newsapp.data.repository.SearchRepository
 import com.govardhan.newsapp.databinding.ActivityMainBinding
-import com.govardhan.newsapp.ui.NewsSource.NewsSourceActivity
+import com.govardhan.newsapp.ui.newssource.NewsSourceActivity
 import com.govardhan.newsapp.ui.country.CountryActivity
 import com.govardhan.newsapp.ui.language.LanguageActivity
 import com.govardhan.newsapp.ui.search.SearchActivity

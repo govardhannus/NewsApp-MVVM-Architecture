@@ -7,6 +7,7 @@ import com.govardhan.newsapp.data.repository.SearchRepository
 import com.govardhan.newsapp.ui.base.UiState
 import com.govardhan.newsapp.utils.AppConstant.DEBOUNCE_TIMEOUT
 import com.govardhan.newsapp.utils.AppConstant.MINI_SEARCH_CHAR
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +18,10 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(private val searchRepository: SearchRepository) : ViewModel(){
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val searchRepository: SearchRepository) : ViewModel(){
 
     private val _uiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
 

@@ -5,37 +5,40 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
-import com.govardhan.newsapp.NewsApplication
 import com.govardhan.newsapp.data.model.Article
 import com.govardhan.newsapp.databinding.ActivityTopHeadlineBinding
-import com.govardhan.newsapp.di.component.DaggerActivityComponent
-import com.govardhan.newsapp.di.module.ActivityModule
 import com.govardhan.newsapp.ui.base.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
+@AndroidEntryPoint
 class TopHeadlineActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var newsListViewModel: TopHeadlineViewModel
 
     @Inject
     lateinit var adapter: TopHeadlineAdapter
 
+    private lateinit var newsListViewModel: TopHeadlineViewModel
+
     private lateinit var binding: ActivityTopHeadlineBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityTopHeadlineBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
     }
+
+    private fun setupViewModel() {
+        newsListViewModel = ViewModelProvider(this)[TopHeadlineViewModel::class.java]
+    }
+
 
     private fun setupUI() {
         val recyclerView = binding.recyclerView
@@ -79,11 +82,4 @@ class TopHeadlineActivity : AppCompatActivity() {
         adapter.addData(articleList)
         adapter.notifyDataSetChanged()
     }
-
-    private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
-    }
-
 }
