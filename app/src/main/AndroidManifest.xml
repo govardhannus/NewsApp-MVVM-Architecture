@@ -28,9 +28,6 @@
                 android:name=".ui.newssource.NewsSourceActivity"
                 android:exported="false" />
         <activity
-                android:name=".ui.topheadline.TopHeadlineActivity"
-                android:exported="false" />
-        <activity
                 android:name=".ui.main.MainActivity"
                 android:exported="true">
             <intent-filter>

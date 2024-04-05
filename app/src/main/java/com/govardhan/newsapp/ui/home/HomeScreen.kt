@@ -19,11 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.govardhan.newsapp.ui.base.Route
 import com.govardhan.newsapp.utils.AppConstant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeRoute(){
+fun HomeRoute(navController: NavController){
 
     Scaffold (topBar = {
         TopAppBar(colors = TopAppBarDefaults.smallTopAppBarColors(
@@ -32,19 +34,19 @@ fun HomeRoute(){
         ), title = { Text(text = AppConstant.APP_NAME)})
     }, content = { padding->
         Column (modifier = Modifier.padding(10.dp,100.dp),){
-            NewsHomeScreen()
+            NewsHomeScreen(navController)
         }
     })
 }
 
 @Composable
-fun NewsHomeScreen(){
+fun NewsHomeScreen(navController: NavController){
     Column ( modifier = Modifier
         .fillMaxWidth().fillMaxHeight(),
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = {}, shape = RectangleShape , modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+        Button(onClick = {navController.navigate(Route.TopHeadline.name) }, shape = RectangleShape , modifier = Modifier.size(width = 340.dp, height = 40.dp)){
             Text(text = "Top Headline")
         }
         Button(onClick = {}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){

@@ -80,9 +80,9 @@ dependencies {
     // hiltViewModel we need to add this library
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 
-    //
     implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
 
+    implementation ("io.coil-kt:coil-compose:2.4.0")
 
 
     testImplementation("junit:junit:4.13.2")
