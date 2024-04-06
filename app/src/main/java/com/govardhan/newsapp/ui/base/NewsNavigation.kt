@@ -8,6 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.govardhan.newsapp.ui.country.CountryRoute
 import com.govardhan.newsapp.ui.home.HomeRoute
 import com.govardhan.newsapp.ui.newssource.NewsSourceRoute
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineRoute
@@ -16,6 +17,8 @@ sealed class Route(val name:String){
     object Home: Route("Home")
     object TopHeadline: Route("TopHeadline")
     object NewsSource: Route("NewsSource")
+
+    object Country: Route("country")
 }
 @Composable
 fun NewsNavHost(){
@@ -36,6 +39,10 @@ fun NewsNavHost(){
             NewsSourceRoute(onNewsclick = {
                 openCustomChromeTab(context,it)
             })
+        }
+
+        composable(route = Route.Country.name){
+            CountryRoute()
         }
     }
 }

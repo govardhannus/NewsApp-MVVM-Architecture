@@ -52,7 +52,7 @@ fun NewsHomeScreen(navController: NavController){
         Button(onClick = {navController.navigate(Route.NewsSource.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
             Text(text = "News Sources")
         }
-        Button(onClick = {}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+        Button(onClick = {navController.navigate(Route.Country.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
             Text(text = "Countries")
         }
         Button(onClick = {}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
