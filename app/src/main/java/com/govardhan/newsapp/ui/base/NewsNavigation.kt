@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.govardhan.newsapp.ui.country.CountryRoute
 import com.govardhan.newsapp.ui.home.HomeRoute
+import com.govardhan.newsapp.ui.language.LanguageRoute
 import com.govardhan.newsapp.ui.newssource.NewsSourceRoute
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineRoute
 
@@ -17,8 +18,8 @@ sealed class Route(val name:String){
     object Home: Route("Home")
     object TopHeadline: Route("TopHeadline")
     object NewsSource: Route("NewsSource")
-
     object Country: Route("country")
+    object Language: Route("Language")
 }
 @Composable
 fun NewsNavHost(){
@@ -43,6 +44,10 @@ fun NewsNavHost(){
 
         composable(route = Route.Country.name){
             CountryRoute()
+        }
+
+        composable(route = Route.Language.name){
+            LanguageRoute()
         }
     }
 }

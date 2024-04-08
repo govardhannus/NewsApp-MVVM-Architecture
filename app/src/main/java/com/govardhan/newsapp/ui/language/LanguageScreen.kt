@@ -1,4 +1,4 @@
-package com.govardhan.newsapp.ui.country
+package com.govardhan.newsapp.ui.language
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.govardhan.newsapp.data.model.Country
+import com.govardhan.newsapp.data.model.Language
 import com.govardhan.newsapp.ui.base.ShowError
 import com.govardhan.newsapp.ui.base.ShowLoading
 import com.govardhan.newsapp.ui.base.UiState
@@ -32,8 +32,8 @@ import com.govardhan.newsapp.utils.AppConstant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CountryRoute(
-    viewModel: CountryViewModel = hiltViewModel()
+fun LanguageRoute(
+    viewModel: LanguageViewModel = hiltViewModel()
 ){
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -44,16 +44,16 @@ fun CountryRoute(
         ), title = { Text(text = AppConstant.APP_NAME) })
     }, content = { padding->
         Column (modifier = Modifier.padding(padding)){
-            CountryScreen(uiState)
+            LanguageScreen(uiState)
         }
     })
 }
 
 @Composable
-fun CountryScreen(uiState: UiState<List<Country>>){
+fun LanguageScreen(uiState: UiState<List<Language>>){
     when(uiState){
         is UiState.Success -> {
-            CountryList(countrys = uiState.data)
+            LanguageList(languages = uiState.data)
         }
 
         is UiState.Error -> {
@@ -67,25 +67,23 @@ fun CountryScreen(uiState: UiState<List<Country>>){
 }
 
 @Composable
-fun CountryList(countrys:List<Country>){
+fun LanguageList(languages:List<Language>){
     LazyColumn {
-        items(countrys) { country ->
-            Country(country)
+        items(languages) { language ->
+            Language(language)
         }
     }
 }
 
 @Composable
-fun Country(country: Country) {
+fun Language(language: Language) {
     Column ( modifier = Modifier.padding(10.dp,10.dp)
         .fillMaxWidth().fillMaxHeight(),
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {}, shape = RectangleShape , modifier = Modifier.size(width = 340.dp, height = 40.dp)){
-            Text(text = country.name)
+            Text(text = language.name)
         }
     }
 }
-
-
