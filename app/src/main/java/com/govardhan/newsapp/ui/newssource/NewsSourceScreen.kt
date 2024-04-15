@@ -1,8 +1,11 @@
 package com.govardhan.newsapp.ui.newssource
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -14,8 +17,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.govardhan.newsapp.data.model.Source
@@ -27,57 +33,64 @@ import com.govardhan.newsapp.utils.AppConstant
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewsSourceRoute(
-    onNewsclick : (url : String) -> Unit,
-    viewModel : NewsSourceViewModel = hiltViewModel()
+    onNewsclick: (url: String) -> Unit,
+    viewModel: NewsSourceViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Scaffold (topBar = {
+    Scaffold(topBar = {
         TopAppBar(colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
             titleContentColor = Color.White
-        ), title = { Text(text = AppConstant.APP_NAME)})
-    }, content = { padding->
-        Column (modifier = Modifier.padding(padding)){
-            NewsSourceScreen(uiState,onNewsclick)
+        ), title = { Text(text = AppConstant.APP_NAME) })
+    }, content = { padding ->
+        Column(modifier = Modifier.padding(padding)) {
+            NewsSourceScreen(uiState, onNewsclick)
         }
     })
 }
 
 @Composable
-fun NewsSourceScreen(uiState: UiState<List<Source>>, onNewsclick: (url: String) -> Unit){
-    when(uiState){
+fun NewsSourceScreen(uiState: UiState<List<Source>>, onNewsclick: (url: String) -> Unit) {
+    when (uiState) {
         is UiState.Success -> {
-            SourceList(sources = uiState.data, onNewsclick =onNewsclick )
+            SourceList(sources = uiState.data, onNewsclick = onNewsclick)
         }
 
         is UiState.Error -> {
-            ShowLoading()
+            ShowError(uiState.message)
         }
 
         is UiState.Loading -> {
-            ShowError("error")
+            ShowLoading()
         }
     }
 }
 
 @Composable
-fun SourceList(sources:List<Source> , onNewsclick: (url: String) -> Unit){
+fun SourceList(sources: List<Source>, onNewsclick: (url: String) -> Unit) {
     LazyColumn {
-        items(sources,key = {source -> source.id!! }) { source ->
-            Source(source,onNewsclick)
+        items(sources, key = { source -> source.id!! }) { source ->
+            Source(source, onNewsclick)
         }
     }
 }
 
 @Composable
-fun Source(source:Source,onNewsclick: (url: String) -> Unit){
-    Column ( modifier = Modifier
-        .fillMaxWidth()
+fun Source(source: Source, onNewsclick: (url: String) -> Unit) {
+    Column(
+        modifier = Modifier
+            .padding(10.dp, 10.dp)
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { if (source.url.isNotEmpty()) {
-            onNewsclick(source.url)
-        } }) {
+        Button(onClick = {
+            if (source.url.isNotEmpty()) {
+                onNewsclick(source.url)
+            }
+        }, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)) {
             Text(text = source.name)
         }
     }

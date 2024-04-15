@@ -47,19 +47,19 @@ fun NewsHomeScreen(navController: NavController){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {navController.navigate(Route.TopHeadline.name) }, shape = RectangleShape , modifier = Modifier.size(width = 340.dp, height = 40.dp)){
-            Text(text = "Top Headline")
+            Text(text = AppConstant.TOP_HEADLINE_TEXT)
         }
         Button(onClick = {navController.navigate(Route.NewsSource.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
-            Text(text = "News Sources")
+            Text(text = AppConstant.NEWS_SOURCES_TEXT)
         }
         Button(onClick = {navController.navigate(Route.Country.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
-            Text(text = "Countries")
+            Text(text = AppConstant.COUNTRIES_TEXT)
         }
         Button(onClick = {navController.navigate(Route.Language.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
-            Text(text = "Languages")
+            Text(text = AppConstant.LANGUAGES_TEXT)
         }
-        Button(onClick = {}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
-            Text(text = "Search")
+        Button(onClick = {navController.navigate(Route.Search.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+            Text(text = AppConstant.SEARCH_TEXT)
         }
     }
 }

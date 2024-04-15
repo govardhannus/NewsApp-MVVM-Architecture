@@ -57,11 +57,12 @@ fun CountryScreen(uiState: UiState<List<Country>>){
         }
 
         is UiState.Error -> {
-            ShowLoading()
+            ShowError(uiState.message)
         }
 
         is UiState.Loading -> {
-            ShowError("error")
+            ShowLoading()
+
         }
     }
 }
