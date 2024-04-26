@@ -33,13 +33,13 @@ fun NewsNavHost(){
             HomeRoute(navController)
         }
         composable(route = Route.TopHeadline.name){
-            TopHeadlineRoute(onNewsclick = {
+            TopHeadlineRoute(onNewsClick = {
                 openCustomChromeTab(context,it)
             })
         }
 
         composable(route = Route.NewsSource.name){
-            NewsSourceRoute(onNewsclick = {
+            NewsSourceRoute(onNewsClick = {
                 openCustomChromeTab(context,it)
             })
         }
@@ -53,7 +53,7 @@ fun NewsNavHost(){
         }
 
         composable(route = Route.Search.name){
-           SearchRoute(onNewsclick = {
+           SearchRoute(onNewsClick = {
                openCustomChromeTab(context,it)
            })
         }

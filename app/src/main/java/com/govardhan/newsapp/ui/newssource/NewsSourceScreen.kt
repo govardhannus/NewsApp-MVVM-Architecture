@@ -33,7 +33,7 @@ import com.govardhan.newsapp.utils.AppConstant
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewsSourceRoute(
-    onNewsclick: (url: String) -> Unit,
+    onNewsClick: (url: String) -> Unit,
     viewModel: NewsSourceViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -45,16 +45,16 @@ fun NewsSourceRoute(
         ), title = { Text(text = AppConstant.APP_NAME) })
     }, content = { padding ->
         Column(modifier = Modifier.padding(padding)) {
-            NewsSourceScreen(uiState, onNewsclick)
+            NewsSourceScreen(uiState, onNewsClick)
         }
     })
 }
 
 @Composable
-fun NewsSourceScreen(uiState: UiState<List<Source>>, onNewsclick: (url: String) -> Unit) {
+fun NewsSourceScreen(uiState: UiState<List<Source>>, onNewsClick: (url: String) -> Unit) {
     when (uiState) {
         is UiState.Success -> {
-            SourceList(sources = uiState.data, onNewsclick = onNewsclick)
+            SourceList(sources = uiState.data, onNewsClick = onNewsClick)
         }
 
         is UiState.Error -> {
@@ -68,16 +68,16 @@ fun NewsSourceScreen(uiState: UiState<List<Source>>, onNewsclick: (url: String) 
 }
 
 @Composable
-fun SourceList(sources: List<Source>, onNewsclick: (url: String) -> Unit) {
+fun SourceList(sources: List<Source>, onNewsClick: (url: String) -> Unit) {
     LazyColumn {
         items(sources, key = { source -> source.id!! }) { source ->
-            Source(source, onNewsclick)
+            Source(source, onNewsClick)
         }
     }
 }
 
 @Composable
-fun Source(source: Source, onNewsclick: (url: String) -> Unit) {
+fun Source(source: Source, onNewsClick: (url: String) -> Unit) {
     Column(
         modifier = Modifier
             .padding(10.dp, 10.dp)
@@ -88,7 +88,7 @@ fun Source(source: Source, onNewsclick: (url: String) -> Unit) {
     ) {
         Button(onClick = {
             if (source.url.isNotEmpty()) {
-                onNewsclick(source.url)
+                onNewsClick(source.url)
             }
         }, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)) {
             Text(text = source.name)

@@ -15,8 +15,6 @@ class CountryRepository @Inject constructor(){
     fun getCountry(): Flow<List<Country>>{
         return flow {
             emit(AppConstant.COUNTRIES)
-        }.map {
-            it
         }
     }
 }

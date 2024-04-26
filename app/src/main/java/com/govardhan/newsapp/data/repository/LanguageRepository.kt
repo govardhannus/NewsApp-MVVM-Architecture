@@ -14,8 +14,6 @@ class LanguageRepository @Inject constructor() {
     fun getLanguages() : Flow<List<Language>>{
         return flow {
             emit(AppConstant.LANGUAGES)
-        }.map {
-            it
         }
     }
 }

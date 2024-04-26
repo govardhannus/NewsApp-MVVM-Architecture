@@ -6,7 +6,6 @@ import com.govardhan.newsapp.data.model.Language
 object AppConstant {
 
     const val APP_NAME = "NewsApp"
-    const val API_KEY = "9f6482a584804376874b848980b7a044"
     const val COUNTRY = "us"
     const val DEBOUNCE_TIMEOUT = 300L
     const val MINI_SEARCH_CHAR = 3

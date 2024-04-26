@@ -24,7 +24,7 @@ import com.govardhan.newsapp.utils.AppConstant
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopHeadlineRoute(
-    onNewsclick: (url : String) ->     Unit,
+    onNewsClick: (url : String) ->     Unit,
             viewModel: TopHeadlineViewModel = hiltViewModel()
 ){
           val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -36,16 +36,16 @@ fun TopHeadlineRoute(
         ), title = { Text(text = AppConstant.APP_NAME)})
     }, content = { padding->
         Column (modifier = Modifier.padding(padding)){
-            TopHeadlineScreen(uiState,onNewsclick)
+            TopHeadlineScreen(uiState,onNewsClick)
         }
     })
 }
 
 @Composable
-fun TopHeadlineScreen(uiState: UiState<List<Article>>, onNewsclick: (url: String) -> Unit){
+fun TopHeadlineScreen(uiState: UiState<List<Article>>, onNewsClick: (url: String) -> Unit){
     when(uiState){
         is UiState.Success -> {
-            ArticeleList(articles = uiState.data, onNewsclick =onNewsclick )
+            ArticeleList(articles = uiState.data, onNewsClick =onNewsClick )
         }
 
         is UiState.Error -> {

@@ -35,7 +35,7 @@ import com.govardhan.newsapp.utils.AppConstant
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchRoute(
-    onNewsclick: (url : String) -> Unit,
+    onNewsClick: (url : String) -> Unit,
     viewModel: SearchViewModel = hiltViewModel()
 ){
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -48,7 +48,7 @@ fun SearchRoute(
         ), title = { Text(text = AppConstant.APP_NAME) })
     }, content = { padding->
         Column (modifier = Modifier.padding(padding)){
-            SearchScreen(uiState,viewModel,onNewsclick,searchText)
+            SearchScreen(uiState,viewModel,onNewsClick,searchText)
         }
     })
 }
@@ -56,12 +56,12 @@ fun SearchRoute(
 fun SearchScreen(
     uiState: UiState<List<Article>>,
     viewModel: SearchViewModel,
-    onNewsclick: (url: String) -> Unit,
+    onNewsClick: (url: String) -> Unit,
     searchText: String
 ){
     when(uiState){
         is UiState.Success -> {
-            Search(articles = uiState.data,viewModel,onNewsclick,searchText)
+            Search(articles = uiState.data,viewModel,onNewsClick,searchText)
         }
 
         is UiState.Error -> {
@@ -75,9 +75,8 @@ fun SearchScreen(
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Search(articles:List<Article>,viewModel: SearchViewModel,onNewsclick: (url: String) -> Unit,searchText: String){
+fun Search(articles:List<Article>,viewModel: SearchViewModel,onNewsClick: (url: String) -> Unit,searchText: String){
     Column (modifier = Modifier.fillMaxSize()){
-        var username by remember { mutableStateOf("") }
            TextField(value = searchText,
                onValueChange = viewModel::searchNews,
                modifier = Modifier.fillMaxWidth(),
@@ -86,7 +85,7 @@ fun Search(articles:List<Article>,viewModel: SearchViewModel,onNewsclick: (url: 
            Spacer(modifier = Modifier.height(16.dp))
            LazyColumn {
             items(articles,key = {article -> article.url }) { article ->
-                Article(article,onNewsclick)
+                Article(article,onNewsClick)
             }
         }
     }

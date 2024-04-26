@@ -62,10 +62,10 @@ fun ShowError(text: String) {
 }
 
 @Composable
-fun ArticeleList(articles:List<Article>, onNewsclick: (url: String) -> Unit){
+fun ArticeleList(articles:List<Article>, onNewsClick: (url: String) -> Unit){
     LazyColumn {
         items(articles,key = {article -> article.url }) { article ->
-            Article(article,onNewsclick)
+            Article(article,onNewsClick)
         }
     }
 }

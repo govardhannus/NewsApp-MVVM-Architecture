@@ -15,21 +15,21 @@ import javax.inject.Inject
 @HiltViewModel
 class LanguageViewModel @Inject constructor(private val languageRepository: LanguageRepository) : ViewModel() {
 
-    private val _uistate = MutableStateFlow<UiState<List<Language>>>(UiState.Loading)
+    private val _uiState = MutableStateFlow<UiState<List<Language>>>(UiState.Loading)
 
-    val uiState :StateFlow<UiState<List<Language>>> = _uistate
+    val uiState :StateFlow<UiState<List<Language>>> = _uiState
 
     init {
-         getCuntries()
+        fetchLanguages()
     }
 
-    private fun getCuntries(){
+    private fun fetchLanguages(){
         viewModelScope.launch {
             languageRepository.getLanguages()
                 .catch {e ->
-                    _uistate.value = UiState.Error(e.toString())
+                    _uiState.value = UiState.Error(e.toString())
                 }.collect{
-                    _uistate.value = UiState.Success(it)
+                    _uiState.value = UiState.Success(it)
                 }
         }
     }
