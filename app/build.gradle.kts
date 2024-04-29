@@ -82,8 +82,15 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.4.0")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:5.3.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation ("app.cash.turbine:turbine:0.12.1")
 
-    androidTestImplementation(composeBom)
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation(composeBom)
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4")
+
+    debugImplementation ("androidx.compose.ui:ui-tooling")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest")
 }

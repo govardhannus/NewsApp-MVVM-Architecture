@@ -4,6 +4,8 @@ import com.govardhan.newsapp.data.api.ApiKeyInterceptor
 import com.govardhan.newsapp.data.api.NetworkService
 import com.govardhan.newsapp.di.BaseUrl
 import com.govardhan.newsapp.di.NetworkApiKey
+import com.govardhan.newsapp.utils.DefaultDispatcherProvider
+import com.govardhan.newsapp.utils.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -55,4 +57,7 @@ class ApplicationModule() {
             .create(NetworkService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()
 }

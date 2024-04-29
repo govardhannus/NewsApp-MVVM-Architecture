@@ -6,6 +6,7 @@ import com.govardhan.newsapp.data.model.Article
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.ui.base.UiState
 import com.govardhan.newsapp.utils.AppConstant.COUNTRY
+import com.govardhan.newsapp.utils.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +15,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TopHeadlineViewModel @Inject constructor(private val topHeadlineRepository: TopHeadlineRepository) : ViewModel() {
+class TopHeadlineViewModel @Inject constructor(
+    private val topHeadlineRepository: TopHeadlineRepository,
+    private val dispatcherProvider: DispatcherProvider
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
 
@@ -25,7 +29,7 @@ class TopHeadlineViewModel @Inject constructor(private val topHeadlineRepository
     }
 
     private fun fetchNews() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcherProvider.main) {
             topHeadlineRepository.getTopHeadlines(COUNTRY)
                 .catch { e ->
                     _uiState.value = UiState.Error(e.toString())
