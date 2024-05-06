@@ -1,7 +1,7 @@
 package com.govardhan.newsapp.ui.topheadline
 
 import app.cash.turbine.test
-import com.govardhan.newsapp.data.model.Article
+import com.govardhan.newsapp.data.model.ApiArticle
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.ui.base.UiState
 import com.govardhan.newsapp.utils.AppConstant.COUNTRY
@@ -39,12 +39,12 @@ class TopHeadlineViewModelTest {
     @Test
     fun fetchNews_whenRepositoryResponseSuccess_shouldSetSuccessUiState() {
         runTest {
-            doReturn(flowOf(emptyList<Article>()))
+            doReturn(flowOf(emptyList<ApiArticle>()))
                 .`when`(topHeadlineRepository)
                 .getTopHeadlines(COUNTRY)
             val viewModel = TopHeadlineViewModel(topHeadlineRepository, dispatcherProvider)
             viewModel.uiState.test {
-                assertEquals(UiState.Success(emptyList<List<Article>>()), awaitItem())
+                assertEquals(UiState.Success(emptyList<List<ApiArticle>>()), awaitItem())
                 cancelAndIgnoreRemainingEvents()
             }
             verify(topHeadlineRepository, times(1)).getTopHeadlines(COUNTRY)
@@ -55,7 +55,7 @@ class TopHeadlineViewModelTest {
     fun fetchNews_whenRepositoryResponseError_shouldSetErrorUiState() {
         runTest {
             val errorMessage = "Error Message For You"
-            doReturn(flow<List<Article>> {
+            doReturn(flow<List<ApiArticle>> {
                 throw IllegalStateException(errorMessage)
             })
                 .`when`(topHeadlineRepository)

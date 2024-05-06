@@ -25,41 +25,70 @@ import com.govardhan.newsapp.utils.AppConstant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeRoute(navController: NavController){
+fun HomeRoute(navController: NavController) {
 
-    Scaffold (topBar = {
+    Scaffold(topBar = {
         TopAppBar(colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
             titleContentColor = Color.White
-        ), title = { Text(text = AppConstant.APP_NAME)})
-    }, content = { padding->
-        Column (modifier = Modifier.padding(10.dp,100.dp),){
+        ), title = { Text(text = AppConstant.APP_NAME) })
+    }, content = { padding ->
+        Column(modifier = Modifier.padding(10.dp, 100.dp)) {
             NewsHomeScreen(navController)
         }
     })
 }
 
 @Composable
-fun NewsHomeScreen(navController: NavController){
-    Column ( modifier = Modifier
-        .fillMaxWidth().fillMaxHeight(),
+fun NewsHomeScreen(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = {navController.navigate(Route.TopHeadline.name) }, shape = RectangleShape , modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+        Button(
+            onClick = { navController.navigate(Route.TopHeadline.name) },
+            shape = RectangleShape,
+            modifier = Modifier.size(width = 340.dp, height = 40.dp)
+        ) {
             Text(text = AppConstant.TOP_HEADLINE_TEXT)
         }
-        Button(onClick = {navController.navigate(Route.NewsSource.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+        Button(
+            onClick = { navController.navigate(Route.NewsSource.name) },
+            shape = RectangleShape,
+            modifier = Modifier.size(width = 340.dp, height = 40.dp)
+        ) {
             Text(text = AppConstant.NEWS_SOURCES_TEXT)
         }
-        Button(onClick = {navController.navigate(Route.Country.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+        Button(
+            onClick = { navController.navigate(Route.Country.name) },
+            shape = RectangleShape,
+            modifier = Modifier.size(width = 340.dp, height = 40.dp)
+        ) {
             Text(text = AppConstant.COUNTRIES_TEXT)
         }
-        Button(onClick = {navController.navigate(Route.Language.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+        Button(
+            onClick = { navController.navigate(Route.Language.name) },
+            shape = RectangleShape,
+            modifier = Modifier.size(width = 340.dp, height = 40.dp)
+        ) {
             Text(text = AppConstant.LANGUAGES_TEXT)
         }
-        Button(onClick = {navController.navigate(Route.Search.name)}, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)){
+        Button(
+            onClick = { navController.navigate(Route.Search.name) },
+            shape = RectangleShape,
+            modifier = Modifier.size(width = 340.dp, height = 40.dp)
+        ) {
             Text(text = AppConstant.SEARCH_TEXT)
+        }
+        Button(
+            onClick = { navController.navigate(Route.TopHeadlineOffline.name) },
+            shape = RectangleShape,
+            modifier = Modifier.size(width = 340.dp, height = 40.dp)
+        ) {
+            Text(text = AppConstant.TOP_HEADLINE_OFFLINE_TEXT)
         }
     }
 }

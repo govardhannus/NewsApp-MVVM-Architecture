@@ -2,7 +2,7 @@ package com.govardhan.newsapp.ui.newssource
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.govardhan.newsapp.data.model.Source
+import com.govardhan.newsapp.data.model.ApiSource
 import com.govardhan.newsapp.data.repository.NewsSourceRepository
 import com.govardhan.newsapp.ui.base.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,9 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsSourceViewModel @Inject constructor(private val newsSourceRepository: NewsSourceRepository) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<List<Source>>>(UiState.Loading)
+    private val _uiState = MutableStateFlow<UiState<List<ApiSource>>>(UiState.Loading)
 
-    val uiState : StateFlow<UiState<List<Source>>> = _uiState
+    val uiState : StateFlow<UiState<List<ApiSource>>> = _uiState
 
     init {
         fetchNewsSource()

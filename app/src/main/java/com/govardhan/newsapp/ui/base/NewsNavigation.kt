@@ -12,6 +12,7 @@ import com.govardhan.newsapp.ui.country.CountryRoute
 import com.govardhan.newsapp.ui.home.HomeRoute
 import com.govardhan.newsapp.ui.language.LanguageRoute
 import com.govardhan.newsapp.ui.newssource.NewsSourceRoute
+import com.govardhan.newsapp.ui.offlinearticle.TopHeadlineOfflineRoute
 import com.govardhan.newsapp.ui.search.SearchRoute
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineRoute
 
@@ -22,6 +23,7 @@ sealed class Route(val name:String){
     object Country: Route("country")
     object Language: Route("Language")
     object Search: Route("Search")
+    object TopHeadlineOffline: Route("TopHeadlineOffline")
 }
 @Composable
 fun NewsNavHost(){
@@ -56,6 +58,12 @@ fun NewsNavHost(){
            SearchRoute(onNewsClick = {
                openCustomChromeTab(context,it)
            })
+        }
+
+        composable(route = Route.TopHeadlineOffline.name){
+            TopHeadlineOfflineRoute(onNewsClick = {
+                openCustomChromeTab(context,it)
+            })
         }
     }
 }

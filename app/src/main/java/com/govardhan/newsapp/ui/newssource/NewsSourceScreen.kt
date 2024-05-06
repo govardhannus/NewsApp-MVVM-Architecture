@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.govardhan.newsapp.data.model.Source
+import com.govardhan.newsapp.data.model.ApiSource
 import com.govardhan.newsapp.ui.base.ShowError
 import com.govardhan.newsapp.ui.base.ShowLoading
 import com.govardhan.newsapp.ui.base.UiState
@@ -51,10 +51,10 @@ fun NewsSourceRoute(
 }
 
 @Composable
-fun NewsSourceScreen(uiState: UiState<List<Source>>, onNewsClick: (url: String) -> Unit) {
+fun NewsSourceScreen(uiState: UiState<List<ApiSource>>, onNewsClick: (url: String) -> Unit) {
     when (uiState) {
         is UiState.Success -> {
-            SourceList(sources = uiState.data, onNewsClick = onNewsClick)
+            SourceList(apiSources = uiState.data, onNewsClick = onNewsClick)
         }
 
         is UiState.Error -> {
@@ -68,16 +68,16 @@ fun NewsSourceScreen(uiState: UiState<List<Source>>, onNewsClick: (url: String) 
 }
 
 @Composable
-fun SourceList(sources: List<Source>, onNewsClick: (url: String) -> Unit) {
+fun SourceList(apiSources: List<ApiSource>, onNewsClick: (url: String) -> Unit) {
     LazyColumn {
-        items(sources, key = { source -> source.id!! }) { source ->
+        items(apiSources, key = { source -> source.id!! }) { source ->
             Source(source, onNewsClick)
         }
     }
 }
 
 @Composable
-fun Source(source: Source, onNewsClick: (url: String) -> Unit) {
+fun Source(apiSource: ApiSource, onNewsClick: (url: String) -> Unit) {
     Column(
         modifier = Modifier
             .padding(10.dp, 10.dp)
@@ -87,11 +87,11 @@ fun Source(source: Source, onNewsClick: (url: String) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {
-            if (source.url.isNotEmpty()) {
-                onNewsClick(source.url)
+            if (apiSource.url.isNotEmpty()) {
+                onNewsClick(apiSource.url)
             }
         }, shape = RectangleShape, modifier = Modifier.size(width = 340.dp, height = 40.dp)) {
-            Text(text = source.name)
+            Text(text = apiSource.name)
         }
     }
 }

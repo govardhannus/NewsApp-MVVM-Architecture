@@ -17,15 +17,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.govardhan.newsapp.data.model.Article
+import com.govardhan.newsapp.data.model.ApiArticle
 import com.govardhan.newsapp.ui.base.Article
 import com.govardhan.newsapp.ui.base.ShowError
 import com.govardhan.newsapp.ui.base.ShowLoading
@@ -54,14 +51,14 @@ fun SearchRoute(
 }
 @Composable
 fun SearchScreen(
-    uiState: UiState<List<Article>>,
+    uiState: UiState<List<ApiArticle>>,
     viewModel: SearchViewModel,
     onNewsClick: (url: String) -> Unit,
     searchText: String
 ){
     when(uiState){
         is UiState.Success -> {
-            Search(articles = uiState.data,viewModel,onNewsClick,searchText)
+            Search(apiArticles = uiState.data,viewModel,onNewsClick,searchText)
         }
 
         is UiState.Error -> {
@@ -75,7 +72,7 @@ fun SearchScreen(
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Search(articles:List<Article>,viewModel: SearchViewModel,onNewsClick: (url: String) -> Unit,searchText: String){
+fun Search(apiArticles:List<ApiArticle>, viewModel: SearchViewModel, onNewsClick: (url: String) -> Unit, searchText: String){
     Column (modifier = Modifier.fillMaxSize()){
            TextField(value = searchText,
                onValueChange = viewModel::searchNews,
@@ -84,7 +81,7 @@ fun Search(articles:List<Article>,viewModel: SearchViewModel,onNewsClick: (url: 
            )
            Spacer(modifier = Modifier.height(16.dp))
            LazyColumn {
-            items(articles,key = {article -> article.url }) { article ->
+            items(apiArticles,key = { article -> article.url }) { article ->
                 Article(article,onNewsClick)
             }
         }

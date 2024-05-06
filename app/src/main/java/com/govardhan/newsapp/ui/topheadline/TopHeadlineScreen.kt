@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.govardhan.newsapp.data.model.Article
+import com.govardhan.newsapp.data.model.ApiArticle
 import com.govardhan.newsapp.ui.base.ArticeleList
 import com.govardhan.newsapp.ui.base.ShowError
 import com.govardhan.newsapp.ui.base.ShowLoading
@@ -24,8 +24,8 @@ import com.govardhan.newsapp.utils.AppConstant
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopHeadlineRoute(
-    onNewsClick: (url : String) ->     Unit,
-            viewModel: TopHeadlineViewModel = hiltViewModel()
+    onNewsClick: (url : String) -> Unit,
+    viewModel: TopHeadlineViewModel = hiltViewModel()
 ){
           val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -42,10 +42,10 @@ fun TopHeadlineRoute(
 }
 
 @Composable
-fun TopHeadlineScreen(uiState: UiState<List<Article>>, onNewsClick: (url: String) -> Unit){
+fun TopHeadlineScreen(uiState: UiState<List<ApiArticle>>, onNewsClick: (url: String) -> Unit){
     when(uiState){
         is UiState.Success -> {
-            ArticeleList(articles = uiState.data, onNewsClick =onNewsClick )
+            ArticeleList(apiArticles = uiState.data, onNewsClick =onNewsClick )
         }
 
         is UiState.Error -> {

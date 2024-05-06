@@ -2,7 +2,7 @@ package com.govardhan.newsapp.ui.topheadline
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.govardhan.newsapp.data.model.Article
+import com.govardhan.newsapp.data.model.ApiArticle
 import com.govardhan.newsapp.data.repository.TopHeadlineRepository
 import com.govardhan.newsapp.ui.base.UiState
 import com.govardhan.newsapp.utils.AppConstant.COUNTRY
@@ -20,9 +20,9 @@ class TopHeadlineViewModel @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
+    private val _uiState = MutableStateFlow<UiState<List<ApiArticle>>>(UiState.Loading)
 
-    val uiState: StateFlow<UiState<List<Article>>> = _uiState
+    val uiState: StateFlow<UiState<List<ApiArticle>>> = _uiState
 
     init {
         fetchNews()

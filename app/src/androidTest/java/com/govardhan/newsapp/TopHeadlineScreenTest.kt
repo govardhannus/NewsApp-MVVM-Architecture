@@ -8,8 +8,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performScrollToNode
-import com.govardhan.newsapp.data.model.Article
-import com.govardhan.newsapp.data.model.Source
+import com.govardhan.newsapp.data.model.ApiArticle
+import com.govardhan.newsapp.data.model.ApiSource
 import com.govardhan.newsapp.ui.base.UiState
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineScreen
 import org.junit.Rule
@@ -33,21 +33,21 @@ class TopHeadlineScreenTest {
     @Test
     fun articles_whenUiStateIsSuccess_isShown() {
         composeTestRule.setContent {
-            TopHeadlineScreen(uiState = UiState.Success(testArticles), onNewsClick = {})
+            TopHeadlineScreen(uiState = UiState.Success(testApiArticles), onNewsClick = {})
         }
 
         composeTestRule.onNodeWithText(
-            testArticles[0].title, substring = true
+            testApiArticles[0].title, substring = true
         ).assertExists().assertHasClickAction()
 
         composeTestRule.onNode(hasScrollToNodeAction()).performScrollToNode(
             hasText(
-                testArticles[5].title, substring = true
+                testApiArticles[5].title, substring = true
             )
         )
 
         composeTestRule.onNodeWithText(
-            testArticles[5].title, substring = true
+            testApiArticles[5].title, substring = true
         ).assertExists().assertHasClickAction()
     }
 
@@ -64,42 +64,42 @@ class TopHeadlineScreenTest {
 
 }
 
-private val testArticles = listOf(
-    Article(
+private val testApiArticles = listOf(
+    ApiArticle(
         title = "title1",
         description = "description1",
         url = "url1",
         imageUrl = "imageUrl1",
-        source = Source(id = "sourceId1", name = "sourceName1")
-    ), Article(
+        apiSource = ApiSource(id = "sourceId1", name = "sourceName1")
+    ), ApiArticle(
         title = "title2",
         description = "description2",
         url = "url2",
         imageUrl = "imageUrl2",
-        source = Source(id = "sourceId2", name = "sourceName2")
-    ), Article(
+        apiSource = ApiSource(id = "sourceId2", name = "sourceName2")
+    ), ApiArticle(
         title = "title3",
         description = "description3",
         url = "url3",
         imageUrl = "imageUrl3",
-        source = Source(id = "sourceId3", name = "sourceName3")
-    ), Article(
+        apiSource = ApiSource(id = "sourceId3", name = "sourceName3")
+    ), ApiArticle(
         title = "title4",
         description = "description4",
         url = "url4",
         imageUrl = "imageUrl4",
-        source = Source(id = "sourceId4", name = "sourceName4")
-    ), Article(
+        apiSource = ApiSource(id = "sourceId4", name = "sourceName4")
+    ), ApiArticle(
         title = "title5",
         description = "description5",
         url = "url5",
         imageUrl = "imageUrl5",
-        source = Source(id = "sourceId5", name = "sourceName5")
-    ), Article(
+        apiSource = ApiSource(id = "sourceId5", name = "sourceName5")
+    ), ApiArticle(
         title = "title6",
         description = "description6",
         url = "url6",
         imageUrl = "imageUrl6",
-        source = Source(id = "sourceId6", name = "sourceName6")
+        apiSource = ApiSource(id = "sourceId6", name = "sourceName6")
     )
 )

@@ -23,8 +23,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.govardhan.newsapp.R
-import com.govardhan.newsapp.data.model.Article
-import com.govardhan.newsapp.data.model.Source
+import com.govardhan.newsapp.data.model.ApiArticle
+import com.govardhan.newsapp.data.model.ApiSource
 
 @Composable
 fun ShowLoading() {
@@ -62,36 +62,36 @@ fun ShowError(text: String) {
 }
 
 @Composable
-fun ArticeleList(articles:List<Article>, onNewsClick: (url: String) -> Unit){
+fun ArticeleList(apiArticles:List<ApiArticle>, onNewsClick: (url: String) -> Unit){
     LazyColumn {
-        items(articles,key = {article -> article.url }) { article ->
+        items(apiArticles,key = { article -> article.url }) { article ->
             Article(article,onNewsClick)
         }
     }
 }
 
 @Composable
-fun Article(article: Article, onNewsClick: (url: String) -> Unit) {
+fun Article(apiArticle: ApiArticle, onNewsClick: (url: String) -> Unit) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .clickable {
-            if (article.url.isNotEmpty()) {
-                onNewsClick(article.url)
+            if (apiArticle.url.isNotEmpty()) {
+                onNewsClick(apiArticle.url)
             }
         }) {
-        BannerImage(article)
-        TitleText(article.title)
-        DescriptionText(article.description)
-        SourceText(article.source)
+        BannerImage(apiArticle)
+        TitleText(apiArticle.title)
+        DescriptionText(apiArticle.description)
+        SourceText(apiArticle.apiSource)
     }
 
 }
 
 @Composable
-fun BannerImage(article: Article) {
+fun BannerImage(apiArticle: ApiArticle) {
     AsyncImage(
-        model = article.imageUrl,
-        contentDescription = article.title,
+        model = apiArticle.imageUrl,
+        contentDescription = apiArticle.title,
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .height(200.dp)
@@ -126,9 +126,9 @@ fun DescriptionText(description: String?) {
 }
 
 @Composable
-fun SourceText(source: Source) {
+fun SourceText(apiSource: ApiSource) {
     Text(
-        text = source.name,
+        text = apiSource.name,
         style = MaterialTheme.typography.titleSmall,
         color = Color.Gray,
         maxLines = 1,

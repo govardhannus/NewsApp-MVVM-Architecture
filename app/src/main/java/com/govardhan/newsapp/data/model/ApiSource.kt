@@ -1,8 +1,9 @@
 package com.govardhan.newsapp.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.govardhan.newsapp.data.local.entity.Source
 
-data class Source (
+data class ApiSource (
     @SerializedName("id")
     val id: String? = null,
     @SerializedName("name")
@@ -18,3 +19,10 @@ data class Source (
     @SerializedName("country")
     val country: String = "",
 )
+
+fun ApiSource.toSourceEntity(): Source {
+    return Source(
+        id=id,
+        name=name
+    )
+}

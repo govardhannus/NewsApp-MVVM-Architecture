@@ -2,7 +2,7 @@ package com.govardhan.newsapp.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.govardhan.newsapp.data.model.Article
+import com.govardhan.newsapp.data.model.ApiArticle
 import com.govardhan.newsapp.data.repository.SearchRepository
 import com.govardhan.newsapp.ui.base.UiState
 import com.govardhan.newsapp.utils.AppConstant.DEBOUNCE_TIMEOUT
@@ -23,9 +23,9 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val searchRepository: SearchRepository) : ViewModel(){
 
-    private val _uiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
+    private val _uiState = MutableStateFlow<UiState<List<ApiArticle>>>(UiState.Loading)
 
-    val uiState : StateFlow<UiState<List<Article>>> = _uiState
+    val uiState : StateFlow<UiState<List<ApiArticle>>> = _uiState
 
     val query = MutableStateFlow("");
     init {
