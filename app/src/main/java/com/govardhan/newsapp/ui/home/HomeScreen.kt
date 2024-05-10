@@ -90,5 +90,12 @@ fun NewsHomeScreen(navController: NavController) {
         ) {
             Text(text = AppConstant.TOP_HEADLINE_OFFLINE_TEXT)
         }
+        Button(
+            onClick = { navController.navigate(Route.TopHeadlinePaging.name) },
+            shape = RectangleShape,
+            modifier = Modifier.size(width = 340.dp, height = 40.dp)
+        ) {
+            Text(text = AppConstant.TOP_HEADLINE_PAGING_TEXT)
+        }
     }
 }

@@ -15,6 +15,9 @@ object AppConstant {
     const val LANGUAGES_TEXT = "Languages"
     const val SEARCH_TEXT = "Search"
     const val TOP_HEADLINE_OFFLINE_TEXT = "Top Headline Offline"
+    const val TOP_HEADLINE_PAGING_TEXT = "Top Headline Paging"
+    const val INITIAL_PAGE = 1
+    const val PAGE_SIZE = 10
 
     val COUNTRIES = listOf(
         Country("ae", "United Arab Emirates"),

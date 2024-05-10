@@ -15,6 +15,7 @@ import com.govardhan.newsapp.ui.newssource.NewsSourceRoute
 import com.govardhan.newsapp.ui.offlinearticle.TopHeadlineOfflineRoute
 import com.govardhan.newsapp.ui.search.SearchRoute
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineRoute
+import com.govardhan.newsapp.ui.topheadlinepaging.TopHeadlinePagingRoute
 
 sealed class Route(val name:String){
     object Home: Route("Home")
@@ -24,6 +25,7 @@ sealed class Route(val name:String){
     object Language: Route("Language")
     object Search: Route("Search")
     object TopHeadlineOffline: Route("TopHeadlineOffline")
+    object TopHeadlinePaging: Route("TopHeadlinepaging")
 }
 @Composable
 fun NewsNavHost(){
@@ -62,6 +64,11 @@ fun NewsNavHost(){
 
         composable(route = Route.TopHeadlineOffline.name){
             TopHeadlineOfflineRoute(onNewsClick = {
+                openCustomChromeTab(context,it)
+            })
+        }
+        composable(route = Route.TopHeadlinePaging.name){
+            TopHeadlinePagingRoute(onNewsClick = {
                 openCustomChromeTab(context,it)
             })
         }
