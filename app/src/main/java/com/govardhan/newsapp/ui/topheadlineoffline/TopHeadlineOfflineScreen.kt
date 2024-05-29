@@ -1,4 +1,4 @@
-package com.govardhan.newsapp.ui.offlinearticle
+package com.govardhan.newsapp.ui.topheadlineoffline
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

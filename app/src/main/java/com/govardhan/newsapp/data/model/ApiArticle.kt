@@ -27,3 +27,11 @@ fun ApiArticle.toArticleEntity(): Article {
     )
 }
 
+fun List<ApiArticle>.apiArticleListToArticleList(): List<Article> {
+    val list = mutableListOf<Article>()
+    forEach { apiArticle ->
+        list.add(apiArticle.toArticleEntity())
+    }
+    return list
+}
+

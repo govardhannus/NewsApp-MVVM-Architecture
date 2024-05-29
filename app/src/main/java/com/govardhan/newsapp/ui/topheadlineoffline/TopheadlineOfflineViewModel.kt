@@ -1,4 +1,4 @@
-package com.govardhan.newsapp.ui.offlinearticle
+package com.govardhan.newsapp.ui.topheadlineoffline
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

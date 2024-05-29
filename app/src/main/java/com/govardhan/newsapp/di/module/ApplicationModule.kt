@@ -2,6 +2,7 @@ package com.govardhan.newsapp.di.module
 
 import android.content.Context
 import androidx.room.Room
+import androidx.work.WorkManager
 import com.govardhan.newsapp.data.api.ApiKeyInterceptor
 import com.govardhan.newsapp.data.api.NetworkService
 import com.govardhan.newsapp.data.local.AppDatabase
@@ -98,5 +99,13 @@ class ApplicationModule() {
     @Singleton
     fun provideDatabaseService(appDatabase: AppDatabase): DatabaseService {
         return AppDatabaseService(appDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(
+        @ApplicationContext context: Context
+    ): WorkManager {
+        return WorkManager.getInstance(context)
     }
 }

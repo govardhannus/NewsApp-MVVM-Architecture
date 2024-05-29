@@ -12,7 +12,7 @@ import com.govardhan.newsapp.ui.country.CountryRoute
 import com.govardhan.newsapp.ui.home.HomeRoute
 import com.govardhan.newsapp.ui.language.LanguageRoute
 import com.govardhan.newsapp.ui.newssource.NewsSourceRoute
-import com.govardhan.newsapp.ui.offlinearticle.TopHeadlineOfflineRoute
+import com.govardhan.newsapp.ui.topheadlineoffline.TopHeadlineOfflineRoute
 import com.govardhan.newsapp.ui.search.SearchRoute
 import com.govardhan.newsapp.ui.topheadline.TopHeadlineRoute
 import com.govardhan.newsapp.ui.topheadlinepaging.TopHeadlinePagingRoute

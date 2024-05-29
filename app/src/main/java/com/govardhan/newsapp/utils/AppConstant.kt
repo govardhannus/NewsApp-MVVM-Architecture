@@ -18,6 +18,8 @@ object AppConstant {
     const val TOP_HEADLINE_PAGING_TEXT = "Top Headline Paging"
     const val INITIAL_PAGE = 1
     const val PAGE_SIZE = 10
+    const val UNIQUE_WORK_NAME = "newsAppWorker"
+    const val MORNING_UPDATE_TIME = 5
 
     val COUNTRIES = listOf(
         Country("ae", "United Arab Emirates"),

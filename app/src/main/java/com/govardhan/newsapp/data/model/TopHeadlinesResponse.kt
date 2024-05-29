@@ -2,7 +2,7 @@ package com.govardhan.newsapp.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class TopHeadlinesResponse (
+data class TopHeadlinesResponse(
     @SerializedName("status")
     val status: String = "",
     @SerializedName("totalResults")

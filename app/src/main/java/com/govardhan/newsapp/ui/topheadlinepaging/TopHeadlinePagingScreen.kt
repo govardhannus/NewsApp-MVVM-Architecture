@@ -20,7 +20,6 @@ import com.govardhan.newsapp.data.model.ApiArticle
 import com.govardhan.newsapp.ui.base.Article
 import com.govardhan.newsapp.ui.base.ShowError
 import com.govardhan.newsapp.ui.base.ShowLoading
-import com.govardhan.newsapp.ui.offlinearticle.ArticleList
 import com.govardhan.newsapp.utils.AppConstant
 
 @OptIn(ExperimentalMaterial3Api::class)
